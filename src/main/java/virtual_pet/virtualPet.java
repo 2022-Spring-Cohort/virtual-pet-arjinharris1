@@ -48,8 +48,8 @@ public class virtualPet {
     }
 
     public void tick(){
-        energyLevel= energyLevel+10;
-        hungerLevel= hungerLevel-10;
+        energyLevel= energyLevel+20;
+        hungerLevel= hungerLevel-20;
     }
     public void feed(){
         hungerLevel= hungerLevel+25;
@@ -59,6 +59,28 @@ public class virtualPet {
         hungerLevel=hungerLevel+5;
     }
     public void walk(){
+        if(isOverWeight){
         energyLevel=energyLevel-30;
+        hungerLevel= hungerLevel -30;
+        }
+        else{
+            energyLevel=energyLevel-40;
+            hungerLevel= hungerLevel -40;
+        }
+    }
+
+    public void play(){
+        if(isSpoiled ){
+          energyLevel=energyLevel-20;
+        }
+        else {
+            energyLevel = energyLevel - 50;
+        }
+        hungerLevel= hungerLevel- 10;
+
+    }
+    public String getStatus(virtualPet g){
+        return "my energy level is "+ g.getEnergyLevel()+
+                "\nMy Hungry level is " +g.getHungerLevel();
     }
 }
