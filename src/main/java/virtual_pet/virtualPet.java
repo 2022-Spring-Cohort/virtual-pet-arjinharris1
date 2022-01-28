@@ -8,8 +8,9 @@ public class virtualPet {
     private boolean isSpoiled;
     private int hungerLevel;
     private int energyLevel;
+    private  boolean isDeadOrRampage;
 
-    public virtualPet(String petName, int age, String breed, boolean isOverWeight, boolean isSpoiled, int hungerLevel, int energyLevel) {
+    public virtualPet(String petName, int age, String breed, boolean isOverWeight, boolean isSpoiled, int hungerLevel, int energyLevel, boolean isDeadOrRampage) {
         this.petName = petName;
         this.age = age;
         this.breed = breed;
@@ -17,7 +18,10 @@ public class virtualPet {
         this.isSpoiled = isSpoiled;
         this.hungerLevel = hungerLevel;
         this.energyLevel = energyLevel;
+        this.isDeadOrRampage = isDeadOrRampage;
     }
+    virtualPetShelter petShelter = new virtualPetShelter();
+
 
     public String getPetName() {
         return petName;
@@ -47,40 +51,57 @@ public class virtualPet {
         return energyLevel;
     }
 
+    public boolean isDeadOrRampage(){return  isDeadOrRampage;}
+
     public void tick(){
-        energyLevel= energyLevel+20;
-        hungerLevel= hungerLevel-20;
+
+        energyLevel= energyLevel+2;
+        hungerLevel= hungerLevel-2;
     }
     public void feed(){
-        hungerLevel= hungerLevel+25;
+        hungerLevel= hungerLevel+5;
 
     }
     public void snack(){
-        hungerLevel=hungerLevel+5;
+        hungerLevel=hungerLevel+2;
     }
     public void walk(){
         if(isOverWeight){
-        energyLevel=energyLevel-30;
-        hungerLevel= hungerLevel -30;
+        energyLevel=energyLevel-3;
+        hungerLevel= hungerLevel -3;
         }
         else{
-            energyLevel=energyLevel-40;
-            hungerLevel= hungerLevel -40;
+            energyLevel=energyLevel-4;
+            hungerLevel= hungerLevel -4;
         }
     }
 
     public void play(){
         if(isSpoiled ){
-          energyLevel=energyLevel-20;
+          energyLevel=energyLevel-2;
         }
         else {
-            energyLevel = energyLevel - 50;
+            energyLevel = energyLevel - 5;
         }
-        hungerLevel= hungerLevel- 10;
+        hungerLevel= hungerLevel- 1;
 
     }
-    public String getStatus(virtualPet g){
-        return "my energy level is "+ g.getEnergyLevel()+
-                "\nMy Hungry level is " +g.getHungerLevel();
+    public void getStatus(){
+        System.out.println( "My name is " + getPetName()+"\nMy energy level is "+ energyLevel+
+                "\nMy Hungry level is " + hungerLevel+ "\n\n");
     }
+    public void KillPetOrRampage(){
+        if(hungerLevel<1){
+            isDeadOrRampage=true;
+        }
+        if(energyLevel>15){
+            isDeadOrRampage=true;
+        }
+    }
+    public void freshStart(){
+        energyLevel=0;
+        hungerLevel=10;
+
+    }
+
 }

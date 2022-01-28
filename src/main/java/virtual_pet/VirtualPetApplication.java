@@ -1,96 +1,138 @@
 package virtual_pet;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class VirtualPetApplication {
+virtualPetShelter petShelter;
 
-    private static virtualPet dog= new virtualPet("Bubba", 3,"beagle",false, true,100, 75 );
-    private static virtualPet secondDog = new virtualPet("max",12,"jack russell",true,true,100,50);
-    private static virtualPet thirdDog = new virtualPet("millie", 4, "corgie",true,false,75,70);
 
     public static void main(String[] args) {
         //Interact with a VirtualPet object in this method
-        ArrayList<virtualPet> petArrayList = new ArrayList<virtualPet>();
-        petArrayList.add(dog);
-        petArrayList.add(secondDog);
-        petArrayList.add(thirdDog);
+         VirtualPetApplication Main = new VirtualPetApplication() ;
+        Main.playGame();
+        }
+
+public void playGame(){
+        petShelter = new virtualPetShelter();
+        petShelter.addPets();
+        petShelter.listAllPets();
         Scanner inputScanner = new Scanner(System.in);
-        virtualPet myDog = dog;
+        boolean exit= true;
+    System.out.println("Welcome to Dog-o-rama!");
+    System.out.println("if a dogs' energy level hits 15 You are going to have a bad time"+
+            "\nIf a dogs' hunger level falls bellow 1 you are gonna have a bad time"
+            +"\nMoral of the story take care of the dogs or your gonna have a bad time");
+        do {
+        System.out.println("commands:\n"
+                + "press 1: Adopt a pet\n"
+                + "press 2: admit a pet into shelter \n"
+                + "press 3: feed a single dog\n"
+                + "press 4: play with a  dog\n"
+                + "press 5: give a dog a snack\n"
+                + "press 6: status of single  dog\n"
+                + "press 7: Get status of all shelter pets \n"
+                + "press 8: care for all pets in the shelter (shelter Reset)  \n"
+                + "press 9: to Quit \n");
+        int choice;
 
-        for(virtualPet chosenOne: petArrayList){
-            System.out.println("Hi, My name is "+chosenOne.getPetName()+" I am a "+ chosenOne.getBreed()+
-                    " I am " +chosenOne.getAge()+ " years old\nPlease pick me!");
-        }
-        System.out.println("press 1 for Bubba, 2 for Max, or 3 for Millie");
-        int choice = inputScanner.nextInt();
-        if(choice==1){
-             myDog = dog;
-            System.out.println("Bubba, good choice!");
-
-        }
-        else if(choice==2){
-            myDog = secondDog;
-            System.out.println("Max, Good choice!");
-        }
-        else if(choice==3){
-            myDog = thirdDog;
-            System.out.println("Millie, Good choice");
-        }
-        else{
-            System.out.println("why are you being a dick\n No dog for you!");
-
+        choice = inputScanner.nextInt();
+        petShelter.setDeadOrRampage();
+        if(petShelter.checkIsDead()){
+            break;
         }
 
-        System.out.println("if your dog's energy level reached 150 they will destroy your mom's house"+
-                "\nIf your dog's hunger level falls bellow 10 they will eat your little sister"
-                +"\nEither way your gonna have a bad time");
-        System.out.println("commands: 1:quit  2: go for a walk 3: feed 4:give snack 5: play");
-                int counter=0;
-        for(int i = inputScanner.nextInt(); i !=1;counter++){
+        // need to do status checks on shelter here
+        switch (choice){
+            case 1:
+                //something
+                System.out.println("which dog do you want adopt");
+                String petChoice;
+                String enter =inputScanner.nextLine();
+                petChoice=inputScanner.nextLine();
+                petShelter.adoptPet(petChoice);
+                System.out.println("pet has been adopted");
+                petShelter.listPetsByName();
 
 
-                if (i == 2) {
-                    myDog.walk();
-                    System.out.println(myDog.getStatus(myDog));
-                    System.out.println("commands: 1:quit  2: go for a walk 3: feed 4:give snack 5: play");
-                }
-                else if (i == 3) {
-                    myDog.feed();
-                    System.out.println(myDog.getStatus(myDog));
-                    System.out.println("commands: 1:quit  2: go for a walk 3: feed 4:give snack 5: play");
+                break ;
+            case 2:
+                //something
+                System.out.println("lets add a pet!");
+                petShelter.addNewPet(createPet());
+                break ;
+            case 3:
+                //something
+                String enter3 =inputScanner.nextLine();
+                System.out.println("Which pet do you want to feed");
+                petChoice=inputScanner.nextLine();
+                petShelter.getPetByName(petChoice).feed();
+                System.out.println("you feed "+petShelter.getPetByName(petChoice).getPetName());
 
-                }
-                else if (i == 4) {
-                    myDog.snack();
-                    System.out.println(myDog.getStatus(myDog));
-                    System.out.println("commands: 1:quit  2: go for a walk 3: feed 4:give snack 5: play");
-
-                }
-                else if (i == 5) {
-                    myDog.play();
-                    System.out.println(myDog.getStatus(myDog));
-                    System.out.println("commands: 1:quit  2: go for a walk 3: feed 4:give snack 5: play");
-
-                }
-                 if(myDog.getEnergyLevel()>=150){
-                System.out.println("dude!! a tired dog is a happy dog, Now your having a bad time");
+                break ;
+            case 4:
+                //something
+                String enter4 =inputScanner.nextLine();
+                System.out.println("Which pet do you want to play with");
+                petChoice=inputScanner.nextLine();
+                petShelter.getPetByName(petChoice).play();
+                System.out.println("you played with "+petShelter.getPetByName(petChoice).getPetName());
+                break ;
+            case 5:
+                //something
+                String enter5 =inputScanner.nextLine();
+                System.out.println("Which pet do you want to give a snack");
+                petChoice=inputScanner.nextLine();
+                petShelter.getPetByName(petChoice).snack();
+                System.out.println("you gave "+petShelter.getPetByName(petChoice).getPetName()+ " a snack");
                 break;
-                }
-                if(myDog.getHungerLevel()<=10) {
-                    System.out.println("I warned you! now your having a bad time");
-                    break;
-                }
+            case 6:
+                String enter6 =inputScanner.nextLine();
+                System.out.println("Which pet do you want the status of");
+                petChoice=inputScanner.nextLine();
+                petShelter.getPetByName(petChoice).getStatus();
+                break ;
+            case 7:
+                //something
+                petShelter.getStatusAll();
 
-
-
-
-            myDog.tick();
-
-
-
-            i = inputScanner.nextInt();
+                break ;
+            case 8:
+                //something
+                petShelter.CareAllPets();
+                System.out.println("all pets are feed and happy");
+                break ;
+            case 9:
+                exit= false;
+                break ;
         }
+    } while(exit);
+    System.out.println("Game Over");
 
+
+
+}
+    public virtualPet createPet(){
+        Scanner newPetInfo = new Scanner(System.in);
+        String newPetName;
+        int newPetAge;
+        String newBreed;
+        boolean newIsoverwieght;
+        boolean newIsspoiled;
+        System.out.println("what is the name of your new pet");
+
+         newPetName = newPetInfo.nextLine();
+        System.out.println("What is the new pet breed?");
+        newBreed= newPetInfo.nextLine();
+        System.out.println("how old is the pet");
+        newPetAge= newPetInfo.nextInt();
+        String enter0 = newPetInfo.nextLine();
+        System.out.println("is the pet over weight: true or false");
+        newIsoverwieght = newPetInfo.nextBoolean();
+        System.out.println("is the pet spoiled: true or false");
+        newIsspoiled = newPetInfo.nextBoolean();
+        System.out.println("your new pet has been created");
+        virtualPet newPet = new virtualPet(newPetName,newPetAge,newBreed,newIsoverwieght,newIsspoiled,10,5,false);
+
+        return newPet;
 
     }
 
