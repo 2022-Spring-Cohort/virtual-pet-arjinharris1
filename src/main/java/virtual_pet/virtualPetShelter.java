@@ -12,19 +12,16 @@ public class virtualPetShelter {
     }
 
     public void addPets() {
-        petShelter.add(new virtualPet("Bubba", 3, "beagle", false, false, 10, 7, false));
-        petShelter.add(new virtualPet("max", 4, "husky", true, true, 10, 7, false));
-        petShelter.add(new virtualPet("odin", 5, "pug", false, false, 10, 7, false));
-        petShelter.add(new virtualPet("iroh", 6, "corgie", true, true, 10, 7, false));
-        petShelter.add(new virtualPet("millie", 7, "lab", false, false, 10, 7, false));
+        petShelter.add(new Dogs("Bubba", "real dog", true, false, 1, 15, 7,10));
+        petShelter.add(new Cats("max", "real Cat", false, false, 1, 15, 7));
+        petShelter.add(new roboticDogs("odin", " Robot Dog", true, false, 15, 15));
+        petShelter.add(new Dogs("iroh", "realDog", true, false, 1, 15, 7,10));
+        petShelter.add(new Dogs("millie", "realDog", false, false, 1, 15, 7,10));
     }
 
     public void listAllPets() {
         for (virtualPet currentPet : petShelter) {
-            System.out.println("Hi, My name is " + currentPet.getPetName() + " I am a " + currentPet.getBreed() +
-                    " I am " + currentPet.getAge() + " years old\n" +
-                    "I have an energy level of " + currentPet.getEnergyLevel() +
-                    "\nI have a hunger level of" + currentPet.getHungerLevel() + "\n" + "\n");
+            System.out.println("Hi, My name is " + currentPet.getName() + " I am a " + currentPet.RealOrRobot);
 
         }
 
@@ -42,10 +39,15 @@ public class virtualPetShelter {
         }
 
     }
+    public void tickAllPet(){
+        for (virtualPet currentPet : petShelter){
+            currentPet.tick();
+        }
+    }
 
     public void setDeadOrRampage() {
         for (virtualPet currentPet : petShelter) {
-            currentPet.KillPetOrRampage();
+            currentPet.killPetOrRampage();
         }
 
     }
@@ -73,7 +75,7 @@ public class virtualPetShelter {
 
     public virtualPet getPetByName(String name) {
         for (virtualPet currentPet : petShelter) {
-            if (currentPet.getPetName().equalsIgnoreCase(name)) {
+            if (currentPet.getName().equalsIgnoreCase(name)) {
                 return currentPet;
             }
         }
@@ -81,7 +83,7 @@ public class virtualPetShelter {
     }
     public void listPetsByName(){
         for( virtualPet currentPet: petShelter){
-            System.out.println(currentPet.getPetName() + " is still in the shelter");
+            System.out.println(currentPet.getName() + " is still in the shelter");
         }
     }
     public void addNewPet(virtualPet petToAdd){
