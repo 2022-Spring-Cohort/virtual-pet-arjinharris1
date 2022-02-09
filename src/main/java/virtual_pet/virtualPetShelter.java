@@ -27,6 +27,13 @@ public class virtualPetShelter {
 
     }
 
+   public void walkRealDogs(){
+        for(virtualPet currentPet: petShelter){
+           if(currentPet instanceof Dogs){
+               ((Dogs) currentPet).walk();
+           }
+        }
+   }
     public void CareAllPets() {
         for (virtualPet currentPet : petShelter) {
             currentPet.freshStart();
@@ -37,6 +44,7 @@ public class virtualPetShelter {
         for (virtualPet currentPet : petShelter) {
             currentPet.getStatus();
         }
+
 
     }
     public void tickAllPet(){

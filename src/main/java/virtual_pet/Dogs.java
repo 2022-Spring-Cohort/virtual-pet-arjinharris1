@@ -10,6 +10,12 @@ public class Dogs extends Real implements walkable{
     }
 
     @Override
+    public void getStatus() {
+        System.out.println("My name is " + getPetName() + "\nMy energy level is " + energyLevel +
+                "\nMy Hungry level is " + hungerLevel  +"\nMy Cage Level is "+cageCleanLevel+"\n\n");
+    }
+
+    @Override
     public void killPetOrRampage() {
         if (hungerLevel < 1) {
             isDeadOrRampage = true;
@@ -22,4 +28,11 @@ public class Dogs extends Real implements walkable{
     public void walk() {
         cageCleanLevel=10;
     }
+    public void tick() {
+
+        energyLevel = energyLevel + 2;
+        hungerLevel = hungerLevel - 2;
+        cageCleanLevel =cageCleanLevel-2;
+    }
+
 }

@@ -71,7 +71,8 @@ public class Real extends virtualPet {
 
     public void getStatus() {
         System.out.println("My name is " + getPetName() + "\nMy energy level is " + energyLevel +
-                "\nMy Hungry level is " + hungerLevel + "\n\n");
+                "\nMy Hungry level is " + hungerLevel  +"\n\n");
+
 
     }
 

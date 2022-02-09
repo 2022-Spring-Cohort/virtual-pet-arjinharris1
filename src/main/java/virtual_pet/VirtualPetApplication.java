@@ -31,7 +31,8 @@ public class VirtualPetApplication {
                     + "press 6: status of single  dog\n"
                     + "press 7: Get status of all shelter pets \n"
                     + "press 8: care for all pets in the shelter (shelter Reset)  \n"
-                    + "press 9: to Quit \n");
+                    + "press 9: to walk a pet \n"
+                    + "press 10: to quit\n");
             int choice;
 
             choice = inputScanner.nextInt();
@@ -103,8 +104,25 @@ public class VirtualPetApplication {
                     petShelter.CareAllPets();
                     System.out.println("all pets are feed and happy");
                     break;
+
                 case 9:
+                    String enter7 = inputScanner.nextLine();
+                    System.out.println("which dog do you want to walk");
+                    petChoice = inputScanner.nextLine();
+                     if(petShelter.getPetByName(petChoice) instanceof Dogs){
+                         ((Dogs) petShelter.getPetByName(petChoice)).walk();
+                         System.out.println("dog was walked");
+                     }
+                     else {
+                         System.out.println("not a walkable pet");
+                     }
+
+                    break;
+                case 10:
                     exit = false;
+                    break;
+                default:
+                    System.out.println("Not a valid choice\n and ya pets suffer");
                     break;
             }
         } while (exit);
