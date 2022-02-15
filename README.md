@@ -19,3 +19,11 @@ Pets are not robots - they usually have some sort of self-determination! When ti
 - [ ] Create a visual representation of your pet.
 
 Rather than using numbers to convey your pet’s status, you could have some sort of visual representation of the pet. I.e., instead of printing hunger: 50, you could use smileys or ASCII art to show hunger when hunger >= 50.
+
+
+Support for 4 types of pets: Organic Cats, Organic Dogs, Robotic Cats, Robotic Dogs.
+Robots require oil and maintenance.
+Organic cats and dogs require cage & litter box cleaning.
+Allow users to take dogs on walks.
+Walking organic pets decreases the rate at which they soil their cages/litter boxes.
+Walking robotic pets increases their need for oil and maintenance
